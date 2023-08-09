@@ -43,7 +43,7 @@ $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 	$(CC) $(OBJECTS) $(LIBFT) -L minilibx-linux $(MLX_FLAGS) $(MLX) -o $(NAME)
 	@printf "$(BGREEN) Compilation finished!! $(NC)\n"
 
-$(OBJECTS_DIR): sources/%.c
+$(OBJECTS_DIR): sources/%.c get_next_line/%.c
 	@printf "$(BGBLUE) Creating .o files... $(NC)\n"
 	mkdir -p $(@D)
 	$(CC) -I includes $(FLAGS) -c $< -o $@

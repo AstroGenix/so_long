@@ -19,6 +19,10 @@
 # include <string.h>
 # include <stdio.h>
 # include <strings.h>
+//Buffer size definition
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1024
+# endif
 /*Strucs*/
 typedef struct s_list
 {
@@ -72,5 +76,7 @@ void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstclear(t_list **lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void*));
 t_list			*ft_lstmap(t_list *lst, void *(*f)(void*), void (*del)(void*));
+/*Other*/
+char			*get_next_line(int fd);
 /*End*/
 #endif
