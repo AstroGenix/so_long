@@ -12,41 +12,6 @@
 
 #include "include/so_long.h"
 
-//Open and read the map;
-void	handle_err(int num)
-{
-	if (num == 0)
-		write(1, "Invalid number of arguments.\n", 29);
-	else if (num == 1)
-		write(1, "Invalid map name/extension.\n", 28);
-	exit(0);
-}
-
-//Check the map file [Might not need to be in this func]
-void	check_map_args(const char *map)
-{
-	int	fd;
-
-	if (ft_strnstr(map,".ber",20) == NULL)
-		handle_err(1);
-	fd = open(map, O_RDONLY);
-	if (fd < 0)
-		handle_err(1);
-	close(fd);
-}
-
-//Initialize the map
-void	init_map(t_game *game)
-{
-	game->map.map = 0;
-	game->map.player = 0;
-	game->map.exit = 0;
-	game->map.wall = 0;
-	game->map.points = 0;
-	game->map.width = WIDTH;
-	game->map.heigth = HEIGTH;
-}
-
 //Create a border for the map
 void	map_border(t_game *game, char *map)
 {
@@ -75,8 +40,6 @@ void	map_border(t_game *game, char *map)
 //Check if map is allowed
 void	verify_map(t_game *game, char *map)
 {
-	check_map_args(map);
-	init_map(game);
 	map_border(game, map);
 }
 
@@ -84,8 +47,8 @@ int	main(int argn, char *args[])
 {
 	t_game	game;
 
-	if (argn != 2)
-		handle_err(0);
+	verify_args(argn, args[1]);
+	ft_memset(&game, 0, sizeof(t_game));
 	verify_map(&game, args[1]);
 	game.mlx = mlx_init();
 	void	*mlx_win;

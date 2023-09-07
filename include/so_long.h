@@ -59,4 +59,8 @@ typedef struct	s_game
 # define D		100
 # define ESC	65307
 
+//Error handling functions
+void	error_handle(char *str);
+void	verify_args(int argn, char *args);
+
 #endif

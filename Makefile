@@ -33,7 +33,8 @@ LIBFT = libft/libft.a
 MLX = minilibx-linux/libmlx.a
 
 # Project files
-SOURCES = main.c
+SOURCES = main.c sources/error.c sources/map_handling.c sources/map_build.c \
+			sources/display.c sources/movement.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
