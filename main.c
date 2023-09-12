@@ -50,9 +50,14 @@ int	main(int argn, char *args[])
 	verify_args(argn, args[1]);
 	ft_memset(&game, 0, sizeof(t_game));
 	verify_map(&game, args[1]);
-	game.mlx = mlx_init();
+	game.mlx_ptr = mlx_init();
+	if (!game.mlx_ptr)
+		return (1);
 	void	*mlx_win;
 
-	mlx_win = mlx_new_window(game.mlx, WIDTH, HEIGTH, "So_Long");
-	mlx_loop(game.mlx);
+	// Make width and heigth dynamic
+	mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGTH, "So_Long");
+	mlx_loop(game.mlx_ptr);
+	free (game.mlx_ptr);
+	return (0);
 }

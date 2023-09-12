@@ -39,7 +39,8 @@ typedef struct	s_player
 //Game struct
 typedef struct	s_game
 {
-	void		*mlx;
+	void		*mlx_ptr;//MLX pointer
+	void		*window_ptr;//MLX window pointer
 	t_map		map;
 	t_player	player_pos;
 }				t_game;
