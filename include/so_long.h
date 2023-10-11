@@ -24,10 +24,11 @@ typedef struct	s_map
 	char	**map;
 	int		player;
 	int		wall;
+	int		floor;
 	int		points;
 	int		exit;
 	int		width;
-	int		heigth;
+	int		height;
 }				t_map;
 //Player struct
 typedef struct	s_player
@@ -39,15 +40,14 @@ typedef struct	s_player
 //Game struct
 typedef struct	s_game
 {
-	void		*mlx_ptr;//MLX pointer
-	void		*window_ptr;//MLX window pointer
+	void		*mlx_ptr;//    MLX pointer
+	void		*window_ptr;// MLX window pointer
 	t_map		map;
 	t_player	player_pos;
 }				t_game;
 
-//Define for windows size
-# define WIDTH	1600
-# define HEIGTH	800
+//Define img
+# define IMG	48
 
 //Define key presses
 # define UP		65362
@@ -61,7 +61,8 @@ typedef struct	s_game
 # define ESC	65307
 
 //Error handling functions
-void	error_handle(char *str);
+void	error_handle(char *str, t_game *game);
 void	verify_args(int argn, char *args);
+void	mlx_destroy(t_game *game);
 
 #endif

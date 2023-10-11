@@ -17,30 +17,36 @@ void	map_border(t_game *game, char *map)
 {
 	int		fd;
 	char	*line;
-	int		row;
+	int		i;
 
-	row = 0;
 	fd = open(map, O_RDONLY);
-	while (1)
+	line = get_next_line(fd);
+	while (line != NULL)
 	{
-		line = get_next_line(fd);
-		if (!line)
-		{
-			free(line);
-			break ;
-		}
-		row++;
+		i = 0;
+		while (line[i] != '\0')
+			i++;
+		game->map.width = i;
+		//printf("Width: %i\nHeight: %i\n", game->map.width, game->map.height);
+		game->map.height++;
 		free(line);
+		line = get_next_line(fd);
 	}
-	game->map.heigth = row;
-	printf("Height: %i\n",row);
 	close(fd);
+	if (game->map.height < 1 || game->map.width < 1)
+		error_handle("Incorrect map.", game);
 }
 
 //Check if map is allowed
 void	verify_map(t_game *game, char *map)
 {
 	map_border(game, map);
+	/*if (set_map_layout(game, map) < 0)
+	- Loop map.heigth to join
+	- Count ammount of player,exit,collectible
+	- Check the count
+	- Loop str to get map.width
+	- Malloc the heigth and write to it content of str*/
 }
 
 int	main(int argn, char *args[])
@@ -52,11 +58,12 @@ int	main(int argn, char *args[])
 	verify_map(&game, args[1]);
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
-		return (1);
-	void	*mlx_win;
-
-	// Make width and heigth dynamic
-	mlx_win = mlx_new_window(game.mlx_ptr, WIDTH, HEIGTH, "So_Long");
+		error_handle("Couldn't initialize the game.", &game);
+	game.window_ptr = mlx_new_window(game.mlx_ptr, game.map.width * IMG, \
+	game.map.height * IMG, "So Longer");
+	if (!game.window_ptr)
+		error_handle("Couldn't generate the window.", &game);
+	//mlx_loop_hook(game.mlx,)
 	mlx_loop(game.mlx_ptr);
 	free (game.mlx_ptr);
 	return (0);
