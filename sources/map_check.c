@@ -12,6 +12,17 @@
 
 #include "../include/so_long.h"
 
+//Check if the number of components is valid.
+void	check_components(t_game *game)
+{
+	if (game->map.player == 0 || game->map.player > 1)
+		error_handle("Invalid map: No starting position or too many", game);
+	else if (game->map.points == 0)
+		error_handle("Invalid map: No collectibles found.", game);
+	else if (game->map.exit == 0 || game->map.exit > 1)
+		error_handle("Invalid map: No exit or too many", game);
+}
+
 //Get the max sizes for the map border
 //Check if the map size is at least 3 in height or width
 void	map_border(t_game *game, char *map)

@@ -35,6 +35,7 @@ void	count_components(char *str, t_game *game)
 			error_handle("Map contains illegal characters.", game);
 		i++;
 	}
+	check_components(game);
 }
 
 char	*trim_nbreak(char *str, const char *cut)
