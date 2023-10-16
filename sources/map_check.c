@@ -19,14 +19,20 @@ void	map_border(t_game *game, char *map)
 	int		fd;
 	char	*line;
 	int		i;
+	int		min;
 
+	min = -1;
 	fd = open(map, O_RDONLY);
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
 		i = 0;
-		while (line[i] != '\0')
+		while (line[i] != '\0' && line[i] != '\n')
 			i++;
+		if (min == -1)
+			min = i;
+		else if (min != i)
+			error_handle("Incorrect map size.", game);
 		game->map.width = i;
 		game->map.height++;
 		free(line);
