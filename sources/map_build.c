@@ -35,7 +35,6 @@ void	count_components(char *str, t_game *game)
 			error_handle("Map contains illegal characters.", game);
 		i++;
 	}
-	check_components(game);
 }
 
 char	*trim_nbreak(char *str, const char *cut)
@@ -46,15 +45,15 @@ char	*trim_nbreak(char *str, const char *cut)
 	if (!str || !cut)
 		return (NULL);
 	end = ft_strlen(str);
-	while (end > 0 && str[end - 1] == '\n')
+	while (end > 0 && str[end] == '\n')
 		end--;
 	trim_str = malloc(sizeof(char) * (end + 1));
 	if (!trim_str)
 		return (NULL);
+	//printf("String: |%s|\nSize: %i\n", str, ft_strlen(str));
 	ft_strlcpy(trim_str, str, end);
 	//Test to see if the string gets correctly trimmed
-	//printf("String: \"%s\"\n", str);
-	//printf("Trimmed: \"%s\"\n", trim_str);
+	//printf("Trimmed: \"%s\"\nSize: %i\n\n", trim_str, ft_strlen(trim_str));
 	free(str);
 	return (trim_str);
 }

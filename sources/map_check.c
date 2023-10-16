@@ -12,6 +12,27 @@
 
 #include "../include/so_long.h"
 
+bool	map_enclosed(t_map *map)
+{
+		int	i;
+
+	i = 0;
+	while (i < map->height)
+	{
+		if (map->map[i][0] != '1' || map->map[i][map->width - 1] != '1')
+			return (false);
+		i++;
+	}
+	i = 0;
+	while (i < map->width)
+	{
+		if (map->map[0][i] != '1' || map->map[map->height - 1][i] != '1')
+			return (false);
+			i++;
+	}
+	return (true);
+}
+
 //Check if the number of components is valid.
 void	check_components(t_game *game)
 {

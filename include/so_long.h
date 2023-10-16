@@ -15,6 +15,7 @@
 
 //Needed Libraries
 # include <fcntl.h>
+# include <stdbool.h>
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 
@@ -67,5 +68,6 @@ void	mlx_destroy(t_game *game);
 void	map_build(t_game *game, char *map);
 void	map_border(t_game *game, char *map);
 void	check_components(t_game *game);
+bool	map_enclosed(t_map *map);
 
 #endif

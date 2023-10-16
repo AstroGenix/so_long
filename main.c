@@ -19,7 +19,10 @@ void	map_verify(t_game *game, char *map)
 	map_border(game, map);
 	game->map.map = malloc(sizeof(char *) * (game->map.height + 1));
 	map_build(game, map);
-	//map_check_components(game);
+	check_components(game);
+	if (map_enclosed(&game->map) == false)
+		error_handle("Map is not enclosed", game);
+	
 	/*if (set_map_layout(game, map) < 0)
 	- Loop map.heigth to join
 	- Count ammount of player,exit,collectible
