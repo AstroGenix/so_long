@@ -13,6 +13,28 @@
 #include "../include/so_long.h"
 
 //Check that the outline of the map is only '1'
+void	map_enclosed(t_game *game)//Needs testing to see if working
+{
+	int	i;
+
+	i = 0;
+	while (i < game->map.height)
+	{
+		if (game->map.map[i][0] != '1' || game->map.map[i][game->map.width - 1] != '1')
+			error_handle("Map is not enclosed", game);
+		i++;
+	}
+	i = 0;
+	while (i < game->map.width)
+	{
+		if (game->map.map[0][i] != '1' || game->map.map[game->map.height - 1][i] != '1')
+			error_handle("Map is not enclosed", game);
+			i++;
+	}
+	return ;
+}
+
+/*//Check that the outline of the map is only '1'
 bool	map_enclosed(t_map *map)
 {
 	int	i;
@@ -32,7 +54,7 @@ bool	map_enclosed(t_map *map)
 			i++;
 	}
 	return (true);
-}
+}*/
 
 //Check if the number of components is valid
 void	components_check(t_game *game)

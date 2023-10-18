@@ -34,7 +34,8 @@ MLX = minilibx-linux/libmlx.a
 
 # Project files
 SOURCES = main.c sources/error.c sources/map_handling.c sources/map_build.c \
-			sources/display.c sources/movement.c sources/map_check.c
+			sources/display.c sources/movement.c sources/map_check.c        \
+			sources/map_utils.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)

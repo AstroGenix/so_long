@@ -20,11 +20,12 @@ void	map_verify(t_game *game, char *map)
 	if (game->map.height < 3 || game->map.width < 3)
 		error_handle("Incorrect map size.", game);
 	game->map.map = malloc(sizeof(char *) * (game->map.height + 1));
+	if (!game->map.map)
+		error_handle("Map allocation failed.", game);
 	map_build(game, map);
 	components_check(game);
-	if (map_enclosed(&game->map) == false)
-		error_handle("Map is not enclosed", game);
-	
+	map_enclosed(game);//Needs testing
+	//map_path(game); PART 2 TEST
 	/*if (set_map_layout(game, map) < 0)
 	- Loop map.heigth to join
 	- Count ammount of player,exit,collectible

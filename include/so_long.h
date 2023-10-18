@@ -19,32 +19,46 @@
 # include "../minilibx-linux/mlx.h"
 # include "../libft/libft.h"
 
-//Map struct
-typedef struct	s_map
-{
-	char	**map;
-	int		player;
-	int		wall;
-	int		floor;
-	int		points;
-	int		exit;
-	int		width;
-	int		height;
-}				t_map;
-//Player struct
+//Player current location struct
 typedef struct	s_player
 {
 	int x;
 	int y;
 }				t_player;
 
+//File path for the images
+typedef struct s_img_path
+{
+	char	*player;
+	char	*wall;
+	char	*floor;
+	char	*points;
+	char	*exit;
+	char	*exit_open;
+	char	*player_exit;
+}				t_img_path;
+
+//Map struct
+typedef struct	s_map
+{
+	char		**map;
+	int			player;
+	int			wall;
+	int			floor;
+	int			points;
+	int			exit;
+	int			width;
+	int			height;
+	t_player	player_pos;
+	t_img_path	img_path;
+}				t_map;
+
 //Game struct
 typedef struct	s_game
 {
 	void		*mlx_ptr;//    MLX pointer
 	void		*window_ptr;// MLX window pointer
-	t_map		map;
-	t_player	player_pos;
+	t_map		map;//		   Map struct
 }				t_game;
 
 //Define img
@@ -52,9 +66,9 @@ typedef struct	s_game
 
 //Define key presses
 # define UP		65362
-# define DOWN	65364
-# define LEFT	65361
-# define RIGHT	65363
+# define DN		65364
+# define LT		65361
+# define RT		65363
 # define W		119
 # define A		97
 # define S		115
@@ -62,12 +76,17 @@ typedef struct	s_game
 # define ESC	65307
 
 //Error handling functions
-void	error_handle(char *str, t_game *game);
-void	args_verify(int argn, char *args);
-void	mlx_destroy(t_game *game);
-void	map_build(t_game *game, char *map);
-void	map_border(t_game *game, char *map);
-void	components_check(t_game *game);
-bool	map_enclosed(t_map *map);
+void		error_handle(char *str, t_game *game);
+void		args_verify(int argn, char *args);
+void		mlx_destroy(t_game *game);
+void		map_build(t_game *game, char *map);
+void		map_border(t_game *game, char *map);
+void		components_check(t_game *game);
+void		map_enclosed(t_map *map);
+t_player	find_component(t_game *game, char to_find);
+void		free_map(char **map);
+//char		**map_copy(t_game *game);
+//void		map_path(t_game *game);
+//bool		flood_fill(t_map *map, t_player cur, char **cell)
 
 #endif

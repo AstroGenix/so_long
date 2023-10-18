@@ -61,8 +61,9 @@ char	*trim_nbreak(char *str, const char *cut)
 //Get map contents into map variable
 void	map_build(t_game *game, char *map)
 {
-	int	fd;
-	int	i;
+	t_player	player_pos;
+	int			fd;
+	int			i;
 
 	fd = open(map, O_RDONLY);
 	i = 0;
@@ -73,6 +74,7 @@ void	map_build(t_game *game, char *map)
 		i++;
 	}
 	game->map.map[i] = NULL;
+	player_pos = find_component(game->map.map, 'P');
 	close(fd);
 	i = 0;
 	while (i < (game->map.height) - 1)

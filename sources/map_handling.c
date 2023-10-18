@@ -12,6 +12,20 @@
 
 #include "../include/so_long.h"
 
+//############
+void	map_path(t_game *game)
+{
+	char	**temp_map;
+
+	temp_map = map_copy(game);
+	if (!flood_fill(&game->map, game->map.player_pos, temp_map))
+	{
+		free_map(temp_map);
+		error_handle("Map cannot be completed.", game);
+	}
+	free_map(temp_map);
+}
+
 /*Flood Fill - Check if map is possible
 - The player needs access to the exit.
 - The player, prior to exiting the map, is able to collect all collectables.
