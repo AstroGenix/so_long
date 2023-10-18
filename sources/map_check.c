@@ -12,9 +12,10 @@
 
 #include "../include/so_long.h"
 
+//Check that the outline of the map is only '1'
 bool	map_enclosed(t_map *map)
 {
-		int	i;
+	int	i;
 
 	i = 0;
 	while (i < map->height)
@@ -33,8 +34,8 @@ bool	map_enclosed(t_map *map)
 	return (true);
 }
 
-//Check if the number of components is valid.
-void	check_components(t_game *game)
+//Check if the number of components is valid
+void	components_check(t_game *game)
 {
 	if (game->map.player == 0 || game->map.player > 1)
 		error_handle("Invalid map: No starting position or too many", game);
@@ -72,6 +73,4 @@ void	map_border(t_game *game, char *map)
 	}
 	free(line);
 	close(fd);
-	if (game->map.height < 3 || game->map.width < 3)
-		error_handle("Incorrect map size.", game);
 }

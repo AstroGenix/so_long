@@ -26,6 +26,7 @@ void	error_handle(char *str, t_game *game)
 	exit(1);
 }
 
+//Clear struct variables
 void	mlx_destroy(t_game *game)
 {
 	if (!game)
@@ -37,17 +38,16 @@ void	mlx_destroy(t_game *game)
 		mlx_destroy_display(game->mlx_ptr);
 		free(game->mlx_ptr);
 	}
-	//if (game->map.map)
-	//	free_map(game->map.map);
+	if (game->map.map)
+		free_map(game->map.map);
 }
 
-/* Verify:
-- The number of arguments;
-- If the map name is correct;
-- If the extension is correct:
-- If succeded opening the map.
-*/
-void	verify_args(int argn, char *args)
+//Verify:
+//The number of arguments
+//If the map name is correct
+//If the extension is correct
+//If succeded opening the map
+void	args_verify(int argn, char *args)
 {
 	int	fd;
 

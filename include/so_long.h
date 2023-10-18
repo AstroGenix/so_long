@@ -63,11 +63,11 @@ typedef struct	s_game
 
 //Error handling functions
 void	error_handle(char *str, t_game *game);
-void	verify_args(int argn, char *args);
+void	args_verify(int argn, char *args);
 void	mlx_destroy(t_game *game);
 void	map_build(t_game *game, char *map);
 void	map_border(t_game *game, char *map);
-void	check_components(t_game *game);
+void	components_check(t_game *game);
 bool	map_enclosed(t_map *map);
 
 #endif
