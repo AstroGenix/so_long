@@ -46,6 +46,7 @@ int	main(int argn, char *args[])
 	game.map.height * IMG, "So Longer");
 	if (!game.window_ptr)
 		error_handle("Couldn't generate a window.", &game);
+	xpm_init(&game);
 	mlx_loop(game.mlx_ptr);
 	free (game.mlx_ptr);
 	return (0);

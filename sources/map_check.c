@@ -12,6 +12,21 @@
 
 #include "../include/so_long.h"
 
+//Create a copy of the map to flood it and verify map completion.
+void	map_path(t_game *game)
+{
+	char	**temp_map;
+
+	temp_map = map_copy(game);
+	//printf("P position[%i,%i]",game->map.player_pos.y,game->map.player_pos.x);
+	if (!flood_fill(&game->map, game->map.player_pos, temp_map))
+	{
+		free_map(temp_map);
+		error_handle("Map cannot be completed.", game);
+	}
+	free_map(temp_map);
+}
+
 //Check that the outline of the map is only '1'
 void	map_enclosed(t_game *game)
 {

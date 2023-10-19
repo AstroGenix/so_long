@@ -62,7 +62,7 @@ typedef struct	s_game
 }				t_game;
 
 //Define img
-# define IMG	48
+# define IMG	32
 
 //Define key presses
 # define UP		65362
