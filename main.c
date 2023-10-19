@@ -24,14 +24,8 @@ void	map_verify(t_game *game, char *map)
 		error_handle("Map allocation failed.", game);
 	map_build(game, map);
 	components_check(game);
-	map_enclosed(game);//Needs testing
-	//map_path(game); PART 2 TEST
-	/*if (set_map_layout(game, map) < 0)
-	- Loop map.heigth to join
-	- Count ammount of player,exit,collectible
-	- Check the count
-	- Loop str to get map.width
-	- Malloc the heigth and write to it content of str*/
+	map_enclosed(game);
+	map_path(game);
 }
 
 int	main(int argn, char *args[])
@@ -45,6 +39,9 @@ int	main(int argn, char *args[])
 	if (!game.mlx_ptr)
 		error_handle("Couldn't initialize the game.", &game);
 	//printf("Player: %i\n", game.map.player);
+	//printf("Exit: %i\n", game.map.exit);
+	//printf("Points: %i\n", game.map.points);
+	//printf("Map %ix%i\n", game.map.width, game.map.height);
 	game.window_ptr = mlx_new_window(game.mlx_ptr, game.map.width * IMG, \
 	game.map.height * IMG, "So Longer");
 	if (!game.window_ptr)

@@ -55,7 +55,7 @@ void	args_verify(int argn, char *args)
 		error_handle("Incorrect number of arguments.", NULL);
 	if (ft_strlen(args) < 5)
 		error_handle("Incorrect map name.", NULL);
-	if (ft_strnstr(args,".ber",20) == NULL)
+	if (ft_strnstr(args, ".ber", 20) == NULL)
 		error_handle("Incorrect extension.", NULL);
 	fd = open(args, O_RDONLY);
 	if (fd < 0)

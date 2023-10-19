@@ -12,8 +12,8 @@
 
 #include "../include/so_long.h"
 
-// Count collectibles and others.
-// Error for illegal chars.
+//Count collectibles and others.
+//Error for illegal chars.
 void	count_components(char *str, t_game *game)
 {
 	int	i;
@@ -37,11 +37,12 @@ void	count_components(char *str, t_game *game)
 	}
 }
 
+//Remove the new line from the string
 char	*trim_nbreak(char *str, const char *cut)
 {
 	char	*trim_str;
 	int		end;
-	
+
 	if (!str || !cut)
 		return (NULL);
 	end = ft_strlen(str);
@@ -61,7 +62,6 @@ char	*trim_nbreak(char *str, const char *cut)
 //Get map contents into map variable
 void	map_build(t_game *game, char *map)
 {
-	t_player	player_pos;
 	int			fd;
 	int			i;
 
@@ -74,7 +74,7 @@ void	map_build(t_game *game, char *map)
 		i++;
 	}
 	game->map.map[i] = NULL;
-	player_pos = find_component(game->map.map, 'P');
+	find_component(game, 'P');
 	close(fd);
 	i = 0;
 	while (i < (game->map.height) - 1)

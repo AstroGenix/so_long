@@ -82,11 +82,11 @@ void		mlx_destroy(t_game *game);
 void		map_build(t_game *game, char *map);
 void		map_border(t_game *game, char *map);
 void		components_check(t_game *game);
-void		map_enclosed(t_map *map);
-t_player	find_component(t_game *game, char to_find);
+void		map_enclosed(t_game *game);
+void		find_component(t_game *game, char to_find);
 void		free_map(char **map);
-//char		**map_copy(t_game *game);
-//void		map_path(t_game *game);
-//bool		flood_fill(t_map *map, t_player cur, char **cell)
+char		**map_copy(t_game *game);
+void		map_path(t_game *game);
+bool		flood_fill(t_map *map, t_player cur, char **cell);
 
 #endif

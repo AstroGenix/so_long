@@ -1,8 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   map_utils.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dberehov <dberehov@student.42porto.co      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/19 08:35:47 by dberehov          #+#    #+#             */
+/*   Updated: 2023/10/19 08:35:49 by dberehov         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/so_long.h"
 
-//Might want to change t_game to t_map
-// Might not need to create var pos since pos is in map.
-t_player	find_component(t_game *game, char to_find)
+//Returns the coordinates of where the player is at
+void	find_component(t_game *game, char to_find)
 {
 	t_player	pos;
 
@@ -13,12 +24,15 @@ t_player	find_component(t_game *game, char to_find)
 		while (game->map.map[pos.y][pos.x])
 		{
 			if (game->map.map[pos.y][pos.x] == to_find)
-				return (pos);
+			{
+				game->map.player_pos = (t_player){pos.x, pos.y};
+				return ;
+			}
 			pos.x++;
 		}
 		pos.y++;
 	}
-	error_handle("Component missing.", game);
+	error_handle("Could not find component.", game);
 }
 
 //Free each line of map
@@ -31,13 +45,13 @@ void	free_map(char **map)
 		return ;
 	while (map[i])
 	{
-		free(map[i])
+		free(map[i]);
 		map[i] = NULL;
 		i++;
 	}
 	map = NULL;
 }
-/* PART 2 TEST
+
 //Create a temporary copy of the map for flooding
 char	**map_copy(t_game *game)
 {
@@ -45,13 +59,13 @@ char	**map_copy(t_game *game)
 	char	**new_map;
 
 	i = 0;
-	new_map = (char **)malloc(sizeof(char *) * (game->map.height + 1));
+	new_map = ft_calloc((game->map.height + 1), sizeof(char *));
 	if (!new_map)
 		error_handle("Failed to allocate temporary map. [map_copy()]", game);
 	while (i < game->map.height)
 	{
 		new_map[i] = ft_strdup(game->map.map[i]);
-		if (new_map[i])
+		if (!new_map[i])
 		{
 			free_map(new_map);
 			error_handle("Failed to copy to new map. [map_copy()]", game);
@@ -61,23 +75,23 @@ char	**map_copy(t_game *game)
 	return (new_map);
 }
 
-//NEEDS THOUROUGH TESTING
+//Through recursion fill the floor to make sure coins and
+//exit can be collected.
 bool	flood_fill(t_map *map, t_player cur, char **cell)
 {
-	static int	points;
-	static int	exit;
+	static int	points = 0;
+	static bool	exit = false;
 
 	if (cell[cur.y][cur.x] == '1')
 		return (false);
 	else if (cell[cur.y][cur.x] == 'C')
-		coins++;
+		points++;
 	else if (cell[cur.y][cur.x] == 'E')
 		exit = true;
-	cell[cur.y][cur.x] == '1';
+	cell[cur.y][cur.x] = '1';
 	flood_fill(map, (t_player){cur.x + 1, cur.y}, cell);
 	flood_fill(map, (t_player){cur.x - 1, cur.y}, cell);
 	flood_fill(map, (t_player){cur.x, cur.y + 1}, cell);
 	flood_fill(map, (t_player){cur.x, cur.y - 1}, cell);
-	return (points == map->points && exit);
+	return (exit && points == map->points);
 }
-*/
