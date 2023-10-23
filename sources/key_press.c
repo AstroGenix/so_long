@@ -12,11 +12,6 @@
 
 #include "../include/so_long.h"
 
-void	move_player(t_game *game)
-{
-	printf("moved\n");
-}
-
 int	quit_game(t_game *game)
 {
 	mlx_destroy(game);
@@ -29,13 +24,13 @@ int	key_press(int key, t_game *game)
 	if (key == ESC)
 		quit_game(game);
 	else if (key == W || key == UP)
-		move_player(game);
+		move_player(game, 0, -1);
 	else if (key == A || key == LT)
-		move_player(game);
+		move_player(game, 1, -1);
 	else if (key == S || key == DN)
-		move_player(game);
+		move_player(game, 0, 1);
 	else if (key == D || key == RT)
-		move_player(game);
+		move_player(game, 1, 1);
 	return (0);
 }
 

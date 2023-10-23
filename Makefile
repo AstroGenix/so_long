@@ -11,8 +11,8 @@
 # **************************************************************************** #
 
 # Compiler and flags
-CC = cc
-FLAGS = -Wall -Wextra -Werror
+CC = cc -g
+FLAGS = -g -Wall -Wextra -Werror
 MLX_FLAGS = -lmlx -lXext -lX11 -lm -lbsd
 MAKEFLAG = --no-print-directory
 
@@ -35,14 +35,15 @@ MLX = minilibx-linux/libmlx.a
 # Project files
 SOURCES = main.c sources/error.c sources/xpm_init.c sources/map_build.c     \
 			sources/display.c sources/movement.c sources/map_check.c        \
-			sources/map_utils.c sources/key_press.c
+			sources/map_utils.c sources/key_press.c sources/player.c        \
+			sources/player_utils.c
 OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
 $(NAME): $(OBJECTS) $(LIBFT) $(MLX)
 	@printf "$(BGCYAN) Compiling so_long... $(NC)\n"
-	$(CC) $(OBJECTS) $(LIBFT) -L minilibx-linux $(MLX_FLAGS) $(MLX) -o $(NAME)
+	$(CC) $(OBJECTS) $(LIBFT) -L minilibx-linux $(FLAGS) $(MLX_FLAGS) $(MLX) -o $(NAME)
 	@printf "$(BGREEN) Compilation finished!! $(NC)\n"
 
 $(OBJECTS_DIR): sources/%.c get_next_line/%.c

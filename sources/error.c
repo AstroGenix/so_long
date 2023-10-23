@@ -38,10 +38,10 @@ void	free_texture(t_game *game)
 		mlx_destroy_image(game->mlx_ptr, game->map.img_path.points);
 	if (game->map.img_path.exit)
 		mlx_destroy_image(game->mlx_ptr, game->map.img_path.exit);
-	if (game->map.img_path.exit_open)
-		mlx_destroy_image(game->mlx_ptr, game->map.img_path.exit_open);
-	if (game->map.img_path.player_exit)
-		mlx_destroy_image(game->mlx_ptr, game->map.img_path.player_exit);
+	if (game->map.img_path.e_open)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.e_open);
+	if (game->map.img_path.p_exit)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.p_exit);
 }
 
 //Clear struct variables

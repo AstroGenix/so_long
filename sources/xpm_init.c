@@ -28,9 +28,9 @@ void	xpm_open(t_game *game)
 									"textures/points.xpm", &i, &i);
 	game->map.img_path.exit = mlx_xpm_file_to_image(game->mlx_ptr,
 									"textures/exit.xpm", &i, &i);
-	game->map.img_path.exit_open = mlx_xpm_file_to_image(game->mlx_ptr,
+	game->map.img_path.e_open = mlx_xpm_file_to_image(game->mlx_ptr,
 									"textures/e_open.xpm", &i, &i);
-	game->map.img_path.player_exit = mlx_xpm_file_to_image(game->mlx_ptr,
+	game->map.img_path.p_exit = mlx_xpm_file_to_image(game->mlx_ptr,
 									"textures/p_exit.xpm", &i, &i);
 }
 
@@ -47,10 +47,10 @@ void	xpm_check(t_game *game)
 		error_handle("Failed to open points image", game);
 	if (!game->map.img_path.exit)
 		error_handle("Failed to open exit image", game);
-	if (!game->map.img_path.exit_open)
+	if (!game->map.img_path.e_open)
 		error_handle("Failed to open open exit image", game);
-	if (!game->map.img_path.player_exit)
-		error_handle("Failed to open player on exit image", game);
+	if (!game->map.img_path.p_exit)
+		error_handle("Failed to open open exit image", game);
 }
 
 void	map_draw(t_game *game, char comp, int y, int x)
@@ -65,10 +65,6 @@ void	map_draw(t_game *game, char comp, int y, int x)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.points, 32 * y, 32 * x);
 	else if (comp == 'E')
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.exit, 32 * y, 32 * x);
-	else if (comp == 'p')
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.player_exit, 32 * y, 32 * x);
-	else if (comp == 'e')
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.exit_open, 32 * y, 32 * x);
 }
 
 void	xpm_init(t_game *game)

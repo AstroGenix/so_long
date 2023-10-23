@@ -74,7 +74,7 @@ void	map_build(t_game *game, char *map)
 		i++;
 	}
 	game->map.map[i] = NULL;
-	find_component(game, 'P');
+	find_player(game);
 	close(fd);
 	i = 0;
 	while (i < (game->map.height) - 1)

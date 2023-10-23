@@ -13,7 +13,7 @@
 #include "../include/so_long.h"
 
 //Returns the coordinates of where the player is at
-void	find_component(t_game *game, char to_find)
+void	find_player(t_game *game)
 {
 	t_player	pos;
 
@@ -23,7 +23,7 @@ void	find_component(t_game *game, char to_find)
 		pos.x = 0;
 		while (game->map.map[pos.y][pos.x])
 		{
-			if (game->map.map[pos.y][pos.x] == to_find)
+			if (game->map.map[pos.y][pos.x] == 'P')
 			{
 				game->map.player_pos = (t_player){pos.x, pos.y};
 				return ;

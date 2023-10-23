@@ -34,8 +34,8 @@ typedef struct s_img_path
 	char	*floor;
 	char	*points;
 	char	*exit;
-	char	*exit_open;
-	char	*player_exit;
+	char	*e_open;
+	char	*p_exit;
 }				t_img_path;
 
 //Map struct
@@ -91,7 +91,7 @@ void		map_enclosed(t_game *game);
 char		**map_copy(t_game *game);
 void		map_path(t_game *game);
 bool		flood_fill(t_map *map, t_player cur, char **cell);
-void		find_component(t_game *game, char to_find);
+void		find_player(t_game *game);
 
 //
 void		xpm_init(t_game *game);
@@ -101,5 +101,12 @@ void		map_draw(t_game *game, char comp, int y, int x);
 
 //
 void		start_game(t_game *game);
+int			quit_game(t_game *game);
+
+//
+void		move_player(t_game *game, int y, int step);
+bool		move_into_wall(t_map *map, int y, int step);
+void		output_moves(t_game *game);
+void	update_points(t_game *game);
 
 #endif
