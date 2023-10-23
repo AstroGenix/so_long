@@ -49,6 +49,8 @@ void	free_map(char **map)
 		map[i] = NULL;
 		i++;
 	}
+	if (i > 0)
+		free (map);
 	map = NULL;
 }
 

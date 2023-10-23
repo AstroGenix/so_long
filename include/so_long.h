@@ -58,11 +58,9 @@ typedef struct	s_game
 {
 	void		*mlx_ptr;//    MLX pointer
 	void		*window_ptr;// MLX window pointer
+	int			steps;//	   Step counter
 	t_map		map;//		   Map struct
 }				t_game;
-
-//Define img
-//# define IMG	32
 
 //Define key presses
 # define UP		65362
@@ -101,5 +99,7 @@ void		xpm_open(t_game *game);
 void		xpm_check(t_game *game);
 void		map_draw(t_game *game, char comp, int y, int x);
 
+//
+void		start_game(t_game *game);
 
 #endif

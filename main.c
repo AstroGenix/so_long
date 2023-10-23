@@ -13,7 +13,6 @@
 #include "include/so_long.h"
 
 //Verify the validity of the map
-//NEED MAP TO BE FREED - in the exit of game func
 void	map_verify(t_game *game, char *map)
 {
 	map_border(game, map);
@@ -47,7 +46,7 @@ int	main(int argn, char *args[])
 	if (!game.window_ptr)
 		error_handle("Couldn't generate a window.", &game);
 	xpm_init(&game);
-	mlx_loop(game.mlx_ptr);
+	start_game(&game);
 	free (game.mlx_ptr);
 	return (0);
 }

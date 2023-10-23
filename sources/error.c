@@ -26,11 +26,30 @@ void	error_handle(char *str, t_game *game)
 	exit(1);
 }
 
+void	free_texture(t_game *game)
+{
+	if (game->map.img_path.player)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.player);
+	if (game->map.img_path.wall)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.wall);
+	if (game->map.img_path.floor)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.floor);
+	if (game->map.img_path.points)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.points);
+	if (game->map.img_path.exit)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.exit);
+	if (game->map.img_path.exit_open)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.exit_open);
+	if (game->map.img_path.player_exit)
+		mlx_destroy_image(game->mlx_ptr, game->map.img_path.player_exit);
+}
+
 //Clear struct variables
 void	mlx_destroy(t_game *game)
 {
 	if (!game)
 		return ;
+	free_texture(game);
 	if (game->window_ptr)
 		mlx_destroy_window(game->mlx_ptr, game->window_ptr);
 	if (game->mlx_ptr)
