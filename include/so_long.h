@@ -62,7 +62,7 @@ typedef struct	s_game
 }				t_game;
 
 //Define img
-# define IMG	32
+//# define IMG	32
 
 //Define key presses
 # define UP		65362
@@ -94,5 +94,12 @@ char		**map_copy(t_game *game);
 void		map_path(t_game *game);
 bool		flood_fill(t_map *map, t_player cur, char **cell);
 void		find_component(t_game *game, char to_find);
+
+//
+void		xpm_init(t_game *game);
+void		xpm_open(t_game *game);
+void		xpm_check(t_game *game);
+void		map_draw(t_game *game, char comp, int y, int x);
+
 
 #endif

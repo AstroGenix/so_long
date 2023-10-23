@@ -3,20 +3,23 @@
 //Get the path to images into the variables
 void	xpm_open(t_game *game)
 {
+	int	i;
+
+	i = 32;
 	game->map.img_path.player = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/player.xpm", 32, 32);
+									"textures/player.xpm", &i, &i);
 	game->map.img_path.wall = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/wall.xpm", 32, 32);
+									"textures/wall.xpm", &i, &i);
 	game->map.img_path.floor = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/floor.xpm", 32, 32);
+									"textures/floor.xpm", &i, &i);
 	game->map.img_path.points = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/points.xpm", 32, 32);
+									"textures/points.xpm", &i, &i);
 	game->map.img_path.exit = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/exit.xpm", 32, 32);
+									"textures/exit.xpm", &i, &i);
 	game->map.img_path.exit_open = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/e_open.xpm", 32, 32);
+									"textures/e_open.xpm", &i, &i);
 	game->map.img_path.player_exit = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/p_exit.xpm", 32, 32);
+									"textures/p_exit.xpm", &i, &i);
 }
 
 //Make sure the images opened
@@ -69,7 +72,7 @@ void	xpm_init(t_game *game)
 		j = 0;
 		while (j < game->map.width)
 		{
-			map_draw(game, game->map.map[i][j], i, j);
+			map_draw(game, game->map.map[i][j], j, i);
 			j++;
 		}
 		i++;
