@@ -18,7 +18,6 @@ void	map_path(t_game *game)
 	char	**temp_map;
 
 	temp_map = map_copy(game);
-	//printf("P position[%i,%i]",game->map.player_pos.y,game->map.player_pos.x);
 	if (!flood_fill(&game->map, game->map.player_pos, temp_map))
 	{
 		free_map(temp_map);
@@ -62,8 +61,7 @@ void	components_check(t_game *game)
 		error_handle("Invalid map: No exit or too many", game);
 }
 
-//Get the max sizes for the map border
-//Check if the map size is at least 3 in height or width
+//Get the height and the width of the map
 void	map_border(t_game *game, char *map)
 {
 	int		fd;

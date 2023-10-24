@@ -28,8 +28,6 @@ void	xpm_open(t_game *game)
 									"textures/points.xpm", &i, &i);
 	game->map.img_path.exit = mlx_xpm_file_to_image(game->mlx_ptr,
 									"textures/exit.xpm", &i, &i);
-	game->map.img_path.e_open = mlx_xpm_file_to_image(game->mlx_ptr,
-									"textures/e_open.xpm", &i, &i);
 	game->map.img_path.p_exit = mlx_xpm_file_to_image(game->mlx_ptr,
 									"textures/p_exit.xpm", &i, &i);
 }
@@ -47,12 +45,11 @@ void	xpm_check(t_game *game)
 		error_handle("Failed to open points image", game);
 	if (!game->map.img_path.exit)
 		error_handle("Failed to open exit image", game);
-	if (!game->map.img_path.e_open)
-		error_handle("Failed to open open exit image", game);
 	if (!game->map.img_path.p_exit)
 		error_handle("Failed to open open exit image", game);
 }
 
+//Apply the images to each component of the map
 void	map_draw(t_game *game, char comp, int y, int x)
 {
 	if (comp == '1')
@@ -67,6 +64,9 @@ void	map_draw(t_game *game, char comp, int y, int x)
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.exit, 32 * y, 32 * x);
 }
 
+//Open and save the images
+//Verify if opened correctly
+//Draw the map
 void	xpm_init(t_game *game)
 {
 	int	i;

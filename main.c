@@ -37,10 +37,6 @@ int	main(int argn, char *args[])
 	game.mlx_ptr = mlx_init();
 	if (!game.mlx_ptr)
 		error_handle("Couldn't initialize the game.", &game);
-	//printf("Player: %i\n", game.map.player);
-	//printf("Exit: %i\n", game.map.exit);
-	//printf("Points: %i\n", game.map.points);
-	//printf("Map %ix%i\n", game.map.width, game.map.height);
 	game.window_ptr = mlx_new_window(game.mlx_ptr, game.map.width * 32, \
 	game.map.height * 32, "So Longer");
 	if (!game.window_ptr)

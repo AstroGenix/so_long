@@ -12,6 +12,7 @@
 
 #include "../include/so_long.h"
 
+//TEST TO WRITE THIS BETTER
 void	transition_player(t_game *game)
 {
 	t_player	pos;
@@ -19,15 +20,16 @@ void	transition_player(t_game *game)
 	pos.y = game->map.player_pos.y;
 	pos.x = game->map.player_pos.x;
 	if (game->map.map[pos.y][pos.x] == 'E')
-	{
-			mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.exit, 32 * pos.x, 32 * pos.y);
-	}
+		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
+			 game->map.img_path.exit, 32 * pos.x, 32 * pos.y);
 	else
-	{
-		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.floor, 32 * pos.x, 32 * pos.y);
-	}
+		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr,
+			 game->map.img_path.floor, 32 * pos.x, 32 * pos.y);
 }
 
+//Put specific image on exit if player is there without all points
+//Catch points collected and subract them
+//Exit game if conditions met
 void	get_destination(t_game *game)
 {
 	t_player	pos;
@@ -47,14 +49,18 @@ void	get_destination(t_game *game)
 	else
 		mlx_put_image_to_window(game->mlx_ptr, game->window_ptr, game->map.img_path.player, 32 * game->map.player_pos.x, 32 * game->map.player_pos.y);
 }
-//
+
+//Check on which axis of movement (y)
+//Make sure player can't go into walls
+//Catch what to do with each component
+//Display moves
 void	move_player(t_game *game, int y, int step)
 {
 	if (y == 1)//up || down
 	{
 		if (move_into_wall(&game->map, y, step))
 			return ;
-		transition_player(game);
+		player_on_exit(game);
 		game->map.player_pos.x += step;
 	}
 	else//left || right

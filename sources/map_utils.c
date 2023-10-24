@@ -12,29 +12,6 @@
 
 #include "../include/so_long.h"
 
-//Returns the coordinates of where the player is at
-void	find_player(t_game *game)
-{
-	t_player	pos;
-
-	pos.y = 0;
-	while (game->map.map[pos.y])
-	{
-		pos.x = 0;
-		while (game->map.map[pos.y][pos.x])
-		{
-			if (game->map.map[pos.y][pos.x] == 'P')
-			{
-				game->map.player_pos = (t_player){pos.x, pos.y};
-				return ;
-			}
-			pos.x++;
-		}
-		pos.y++;
-	}
-	error_handle("Could not find component.", game);
-}
-
 //Free each line of map
 void	free_map(char **map)
 {

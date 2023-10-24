@@ -12,8 +12,31 @@
 
 #include "../include/so_long.h"
 
-//Count collectibles and others.
-//Error for illegal chars.
+//Finds player x,y coordinate and saves them in the struct
+void	find_player(t_game *game)
+{
+	t_player	pos;
+
+	pos.y = 0;
+	while (game->map.map[pos.y])
+	{
+		pos.x = 0;
+		while (game->map.map[pos.y][pos.x])
+		{
+			if (game->map.map[pos.y][pos.x] == 'P')
+			{
+				game->map.player_pos = (t_player){pos.x, pos.y};
+				return ;
+			}
+			pos.x++;
+		}
+		pos.y++;
+	}
+	error_handle("Could not find component.", game);
+}
+
+//Count collectibles and others
+//Catch illegal characters
 void	count_components(char *str, t_game *game)
 {
 	int	i;
@@ -38,7 +61,7 @@ void	count_components(char *str, t_game *game)
 }
 
 //Remove the new line from the string
-char	*trim_nbreak(char *str, const char *cut)
+char	*rem_nline(char *str, const char *cut)
 {
 	char	*trim_str;
 	int		end;
@@ -51,15 +74,15 @@ char	*trim_nbreak(char *str, const char *cut)
 	trim_str = malloc(sizeof(char) * (end + 1));
 	if (!trim_str)
 		return (NULL);
-	//printf("String: |%s|\nSize: %i\n", str, ft_strlen(str));
 	ft_strlcpy(trim_str, str, end);
-	//Test to see if the string gets correctly trimmed
-	//printf("Trimmed: \"%s\"\nSize: %i\n\n", trim_str, ft_strlen(trim_str));
 	free(str);
 	return (trim_str);
 }
 
-//Get map contents into map variable
+//Get map text into map variable
+//Count components in each line (x) of map
+//Get x,y coordinates of player
+//Remove '\n' from map text
 void	map_build(t_game *game, char *map)
 {
 	int			fd;
@@ -79,7 +102,7 @@ void	map_build(t_game *game, char *map)
 	i = 0;
 	while (i < (game->map.height) - 1)
 	{
-		game->map.map[i] = trim_nbreak(game->map.map[i], "\n");
+		game->map.map[i] = rem_nline(game->map.map[i], "\n");
 		if (!game->map.map[i])
 			error_handle("Error in removing new line from map.", game);
 		i++;

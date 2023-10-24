@@ -12,6 +12,7 @@
 
 #include "../include/so_long.h"
 
+//Exits the game freeing variable
 int	quit_game(t_game *game)
 {
 	mlx_destroy(game);
@@ -19,6 +20,7 @@ int	quit_game(t_game *game)
 	return (0);
 }
 
+//Define key press action
 int	key_press(int key, t_game *game)
 {
 	if (key == ESC)
@@ -34,6 +36,8 @@ int	key_press(int key, t_game *game)
 	return (0);
 }
 
+//Catch keypress
+//Catch close
 void	start_game(t_game *game)
 {
 	mlx_hook(game->window_ptr, 2, (1L<<0), key_press, game);//Keypress event
